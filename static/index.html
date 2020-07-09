@@ -2,16 +2,33 @@
  * @Author: lumdzeehol
  * @Date: 2020-07-09 15:41:38
  * @LastEditors: lumdzeehol
---> 
+-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
-  Hello World
+  <p id="talk"></p>
+  <p style="text-align: right;">--爱你的lzh</p>
+  <script>
+    (function () {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET','/getTalk');
+      xhr.send();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var data = JSON.parse(xhr.responseText);
+          document.getElementById("talk").innerHTML=data.data;
+        }
+      }
+    }())  
+  </script>
 </body>
+
 </html>
